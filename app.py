@@ -4,6 +4,9 @@ import pytesseract
 import cv2
 import numpy as np
 
+# Specify Tesseract executable path
+pytesseract.pytesseract.tesseract_cmd = "/app/.apt/usr/bin/tesseract"
+
 # Function to perform OCR on the uploaded image
 def perform_ocr(image):
     # Convert the image to grayscale
@@ -13,7 +16,7 @@ def perform_ocr(image):
     return results
 
 def main():
-    st.title("OCR Master")
+    st.title("OCR - Master")
 
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 

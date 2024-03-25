@@ -42,7 +42,7 @@ def main():
             st.image(image_with_boxes, caption='Image with Bounding Boxes', use_column_width=True)
 
             # Extract text from OCR results
-            extracted_text = " ".join([text for text in ocr_results["text"] if text.strip()])
+            extracted_text = "\n".join([text for text in ocr_results["text"] if text.strip()])
 
             # Display the extracted text
             st.subheader("Extracted Text:")

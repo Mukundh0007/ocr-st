@@ -4,7 +4,7 @@ import pytesseract
 import cv2
 import numpy as np
 
-# Function to perform OCR on t he uploaded image
+# Function to perform OCR on the uploaded image
 def perform_ocr(image):
     # Convert the image to grayscale
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -41,12 +41,17 @@ def main():
             # Display the image with bounding boxes
             st.image(image_with_boxes, caption='Image with Bounding Boxes', use_column_width=True)
 
-            # Extract text from OCR results
-            extracted_text = "\n".join([text for text in ocr_results["text"] if text.strip()])
+            # Extract clean text from OCR results
+            extracted_text = ""
+            for i in range(len(ocr_results["text"])):
+                text = ocr_results["text"][i]
+                conf = ocr_results["conf"][i]
+                if conf > 0 and text.strip():  # Filter out noisy or empty text
+                    extracted_text += text + " "
 
             # Display the extracted text
             st.subheader("Extracted Text:")
-            st.write(extracted_text)
+            st.write(extracted_text.strip())  # Strip leading/trailing whitespace
 
 if __name__ == "__main__":
     main()

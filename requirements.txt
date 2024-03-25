@@ -3,4 +3,3 @@ opencv-python-headless
 pytesseract
 pillow
 numpy
-tesseract-ocr
